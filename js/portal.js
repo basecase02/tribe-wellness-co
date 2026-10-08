@@ -122,7 +122,7 @@
   }
   function showPanel(v) { $$('[data-panel]').forEach((p) => { p.hidden = p.id !== 'panel-' + v; }); $$('#d-tabs .tab').forEach((t) => t.setAttribute('aria-selected', String(t.dataset.value === v))); if (v === 'book') renderBook(); }
   const nextUrl = () => { const n = new URLSearchParams(location.search).get('next'); return n && /^\/[a-z0-9\-\/]*$/i.test(n) ? n : null; };
-  function showDash() { const n = nextUrl(); if (n) { location.href = n; return; } login.hidden = true; dash.hidden = false; renderAll(); showPanel('overview'); window.scrollTo({ top: 0 }); }
+  function showDash() { const n = nextUrl(); if (n) { location.href = TWC.url(n); return; } login.hidden = true; dash.hidden = false; renderAll(); showPanel('overview'); window.scrollTo({ top: 0 }); }
   function showLogin(msg) { dash.hidden = true; login.hidden = false; const e = $('#login-error'); e.textContent = msg || ''; e.hidden = !msg; }
   async function startDemo() { demo = true; S.set({ token: 'demo', memberid: 1, expires: 3600, demo: true }); try { sessionStorage.setItem('twc.demoMember', '1'); } catch (e) {} session = S.get(); state = await demoData(); showDash(); }
 

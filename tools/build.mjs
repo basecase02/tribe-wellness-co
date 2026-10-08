@@ -7,6 +7,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+// BASE_PATH=/sub-path  → prefixes root-relative URLs (for GitHub project pages). OUT_DIR → write pages elsewhere (default: project root).
+const BASE = (process.env.BASE_PATH || '').replace(/\/$/, '');
+const OUT = process.env.OUT_DIR ? path.resolve(process.env.OUT_DIR) : ROOT;
+const rebase = (html) => BASE ? html.replace(/(href|src|action|poster)="\/(?!\/)/g, `$1="${BASE}/`).replace(/srcset="([^"]+)"/g, (m, v) => `srcset="${v.replace(/(^|,\s*)\//g, `$1${BASE}/`)}"`) : html;
 export const SITE = {
   url: 'https://www.tribewellnessco.com.au',
   name: 'Tribe Wellness Co',
@@ -72,8 +76,10 @@ for (const file of files) {
     menu_links: MENU.map(([label, links], g) => `<div class="menu__group"><p class="menu__label">${label}</p>${links.map(([l, h], i) => `<a href="${h}" style="--i:${g * 7 + i}"${h === pathName ? ' aria-current="page"' : ''}><span>${l}</span><svg aria-hidden="true"><use href="#i-arrow-ne"/></svg></a>`).join('')}</div>`).join(''),
     year: String(new Date().getFullYear()),
   };
-  const html = [tpl(partial('head'), vars), tpl(partial('header'), vars), body, tpl(partial('footer'), vars)].join('\n');
-  fs.writeFileSync(path.join(ROOT, out), html + '\n');
+  let html = [tpl(partial('head'), vars), tpl(partial('header'), vars), body, tpl(partial('footer'), vars)].join('\n');
+  html = rebase(html).replace('<meta charset="utf-8">', `<meta charset="utf-8">\n<meta name="twc-base" content="${BASE}">`);
+  fs.mkdirSync(path.dirname(path.join(OUT, out)), { recursive: true });
+  fs.writeFileSync(path.join(OUT, out), html + '\n');
   if (!meta.noindex) pages.push({ loc: canonical, priority: meta.priority ?? '0.7', changefreq: meta.changefreq ?? 'monthly' });
   console.log(`✓ ${out}`);
 }
@@ -84,5 +90,5 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 ${pages.map(p => `  <url><loc>${p.loc}</loc><lastmod>${today}</lastmod><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`).join('\n')}
 </urlset>
 `;
-fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap);
+fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap);
 console.log(`✓ sitemap.xml (${pages.length} urls)`);

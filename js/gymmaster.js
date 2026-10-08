@@ -4,8 +4,10 @@
    NOT_CONFIGURED (no key on the server yet), API_ERROR (GymMaster returned an error), HTTP_xxx. */
 window.TWC = window.TWC || {};
 (function (TWC) {
+  const BASE = ((document.querySelector('meta[name="twc-base"]') || {}).content || '').replace(/\/$/, '');
+  TWC.base = BASE; TWC.url = (p) => (BASE && p && p.startsWith('/') ? BASE + p : p);
   const cfg = TWC.config = Object.assign({
-    apiBase: '/api/gm',
+    apiBase: BASE + '/api/gm',
     portalUrl: 'https://tribewellnessco.gymmasteronline.com/portal/',
     companyId: null,            // optional: GymMaster club id (GET v1/companies) for multi-club accounts
   }, TWC.config || {});
@@ -72,7 +74,7 @@ window.TWC = window.TWC || {};
     clear() { try { sessionStorage.removeItem('twc.session'); } catch (e) {} },
   };
 
-  TWC.fetchJSON = (url) => fetch(url, { headers: { accept: 'application/json' } }).then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
+  TWC.fetchJSON = (url) => fetch(TWC.url(url), { headers: { accept: 'application/json' } }).then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
   TWC.initials = (name) => String(name || '').trim().split(/\s+/).slice(0, 2).map((s) => s[0] || '').join('').toUpperCase();
   TWC.esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 })(window.TWC);

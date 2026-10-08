@@ -128,8 +128,8 @@ window.TWC = window.TWC || {};
   const sess = w.TWC && TWC.session && TWC.session.get(); const hdr = $('.site-header');
   if (sess && hdr) {
     const who = sess.demo ? 'Demo member' : 'Member';
-    hdr.insertAdjacentHTML('afterend', `<div class="session-bar" role="status"><div class="container container--wide session-bar__inner"><span><svg><use href="#i-user"/></svg> Signed in as <b>${who}</b>${sess.demo ? ' (preview session)' : ''}</span><span class="session-bar__actions"><a href="/portal">Member portal</a><a href="/leaderboard">Leaderboard</a><a href="/community">Wall</a><button type="button" id="session-signout">Sign out</button></span></div></div>`);
-    $('#session-signout').addEventListener('click', () => { TWC.session.clear(); try { sessionStorage.removeItem('twc.demoMember'); } catch (e) {} location.href = location.pathname === '/portal' ? '/' : location.pathname; });
+    hdr.insertAdjacentHTML('afterend', `<div class="session-bar" role="status"><div class="container container--wide session-bar__inner"><span><svg><use href="#i-user"/></svg> Signed in as <b>${who}</b>${sess.demo ? ' (preview session)' : ''}</span><span class="session-bar__actions"><a href="${TWC.url('/portal')}">Member portal</a><a href="${TWC.url('/leaderboard')}">Leaderboard</a><a href="${TWC.url('/community')}">Wall</a><button type="button" id="session-signout">Sign out</button></span></div></div>`);
+    $('#session-signout').addEventListener('click', () => { TWC.session.clear(); try { sessionStorage.removeItem('twc.demoMember'); } catch (e) {} location.href = location.pathname.endsWith('/portal') ? TWC.url('/') : location.pathname; });
   }
 
   /* Announcement bar */

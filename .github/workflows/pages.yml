@@ -1,0 +1,40 @@
+# Deploys the site to GitHub Pages. Set the repository variable BASE_PATH to "" once a custom domain is attached.
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build with base path
+        env:
+          BASE_PATH: ${{ vars.BASE_PATH != '' && vars.BASE_PATH || '/tribe-wellness-co' }}
+          OUT_DIR: _site
+        run: |
+          node tools/build.mjs
+          rsync -a --exclude '_site' --exclude '.git' --exclude 'src' --exclude 'tools' --exclude 'netlify' --exclude 'assets/img/src' --exclude '*.html' ./ _site/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
