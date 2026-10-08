@@ -98,10 +98,10 @@
     </a>
     <nav class="nav" aria-label="Primary">
       <ul class="nav__list"><li class="nav__item"><a class="nav__link" href="/about">About</a></li><li class="nav__item"><a class="nav__link" href="/team">Our Team</a></li><li class="nav__item"><a class="nav__link" href="/timetable">Timetable</a></li><li class="nav__item"><a class="nav__link" href="/memberships">Memberships</a></li><li class="nav__item"><a class="nav__link" href="/kickstarter">28 Day Kickstarter</a></li><li class="nav__item"><a class="nav__link" href="/partners" aria-current="page">Partners</a></li><li class="nav__item nav__item--sub"><button type="button" class="nav__link nav__sub-toggle" aria-expanded="false" aria-haspopup="true">Members <svg aria-hidden="true"><use href="#i-chev-r"/></svg></button><div class="nav__sub"><a href="/leaderboard"><b>Leaderboard</b><small>Members only: who is showing up</small></a><a href="/community"><b>Community wall</b><small>Members only: wins and shoutouts</small></a><a href="/portal"><b>Member portal</b><small>Bookings, visits and membership</small></a></div></li><li class="nav__item"><a class="nav__link" href="/contact">Contact</a></li></ul>
-      <a class="btn btn--lime btn--sm" href="/join">Join now</a>
+      <a class="btn btn--lime btn--sm header__cta" href="/join">Join now</a>
     </nav>
     <div class="header__mobile">
-      <a class="btn btn--lime btn--sm header__join" href="/join">Join</a>
+      <a class="btn btn--lime btn--sm header__join header__cta" href="/join">Join</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
         <span class="menu-toggle__icon" aria-hidden="true"><span></span><span></span></span>
       </button>
@@ -148,7 +148,7 @@
               <span class="chip chip--soft">Physiotherapy · on site</span>
             </div>
             <h3 class="card__title">Prana Physio &amp; Wellness</h3>
-            <p class="card__text">Physiotherapists working from inside Tribe at 25 Bishop Street. Assessment, hands-on treatment and rehab, with return-to-training plans built together with your Tribe coach.</p>
+            <p class="card__text clamp">Physiotherapists working from inside Tribe at 25 Bishop Street. Assessment, hands-on treatment and rehab, with return-to-training plans built together with your Tribe coach.</p>
             <ul class="checklist">
               <li>Appointments in the building you already train in</li>
               <li>Injury assessment, treatment and guided rehab</li>
@@ -164,15 +164,16 @@
                put the logo in /assets/img/partner-<name>.png (white or dark logo both work on the black box),
                set the chip to the category, 2–3 member benefits, and the booking/website links. -->
 
-          <article class="partner-card partner-card--cta">
-            <p class="eyebrow">More partners joining</p>
-            <h3 class="card__title">Your business, our <span class="accent">tribe</span></h3>
-            <p class="card__text">We're adding strategic partners in nutrition, recovery and performance. If your business would genuinely help Tribe members, let's talk.</p>
-            <div class="actions"><a class="btn btn--lime" href="/contact">Partner with Tribe <svg class="btn__arrow"><use href="#i-arrow"/></svg></a></div>
-          </article>
 
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--dark section--short" id="join-partners" aria-labelledby="jp-title">
+    <div class="container split">
+      <div class="reveal"><p class="eyebrow">More partners joining</p><h2 class="display display--md" id="jp-title">Your business, our <span class="accent">tribe</span></h2></div>
+      <div class="reveal" style="--i:1"><p class="text-2">We're adding strategic partners in nutrition, recovery and performance. If your business would genuinely help Tribe members, let's talk.</p><div class="actions mt-2"><a class="btn btn--lime" href="/contact">Partner with Tribe <svg class="btn__arrow"><use href="#i-arrow"/></svg></a></div></div>
     </div>
   </section>
 
@@ -250,10 +251,6 @@
     </div>
   </div>
 </footer>
-<div class="mobile-cta" id="mobile-cta">
-  <a class="btn btn--lime" href="/join">Start your 7 day free trial</a>
-  <a class="mobile-cta__call" href="tel:+61405476121" aria-label="Call Tribe Wellness Co"><svg><use href="#i-phone"/></svg></a>
-</div>
 <script src="/js/gymmaster.js" defer></script>
 <script src="/js/main.js" defer></script>
 

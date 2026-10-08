@@ -126,6 +126,7 @@ window.TWC = window.TWC || {};
 
   /* Member session bar: visible on every page while a (real or demo) portal session exists */
   const sess = w.TWC && TWC.session && TWC.session.get(); const hdr = $('.site-header');
+  if (sess) $$('.header__cta').forEach((a) => { a.textContent = 'Account'; a.href = TWC.url('/portal'); });
   if (sess && hdr) {
     const who = sess.demo ? 'Demo member' : 'Member';
     hdr.insertAdjacentHTML('afterend', `<div class="session-bar" role="status"><div class="container container--wide session-bar__inner"><span><svg><use href="#i-user"/></svg> Signed in as <b>${who}</b>${sess.demo ? ' (preview session)' : ''}</span><span class="session-bar__actions"><a href="${TWC.url('/portal')}">Member portal</a><a href="${TWC.url('/leaderboard')}">Leaderboard</a><a href="${TWC.url('/community')}">Wall</a><button type="button" id="session-signout">Sign out</button></span></div></div>`);
@@ -246,4 +247,14 @@ window.TWC = window.TWC || {};
     el.innerHTML = `<button type="button" data-page="${page - 1}" aria-label="Previous page" ${page <= 1 ? 'disabled' : ''}><svg><use href="#i-chev-l"/></svg></button>${lo > 1 ? '<button type="button" data-page="1">1</button><span class="pager__info">…</span>' : ''}${win.map((i) => `<button type="button" data-page="${i}" ${i === page ? 'aria-current="page"' : ''}>${i}</button>`).join('')}${hi < pages ? `<span class="pager__info">…</span><button type="button" data-page="${pages}">${pages}</button>` : ''}<button type="button" data-page="${page + 1}" aria-label="Next page" ${page >= pages ? 'disabled' : ''}><svg><use href="#i-chev-r"/></svg></button>${info ? `<span class="pager__info">${info}</span>` : ''}`;
     $$('button[data-page]', el).forEach((b) => b.addEventListener('click', () => onChange(Number(b.dataset.page))));
   };
+
+  /* Read more for clamped text */
+  $$('.clamp').forEach((el) => {
+    requestAnimationFrame(() => {
+      if (el.scrollHeight <= el.clientHeight + 2) { el.classList.add('clamp--fits'); return; }
+      const b = d.createElement('button'); b.type = 'button'; b.className = 'clamp__more'; b.textContent = 'Read more';
+      b.addEventListener('click', () => { const open = el.classList.toggle('is-open'); b.textContent = open ? 'Read less' : 'Read more'; });
+      el.insertAdjacentElement('afterend', b);
+    });
+  });
 })();

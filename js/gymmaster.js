@@ -74,6 +74,7 @@ window.TWC = window.TWC || {};
     clear() { try { sessionStorage.removeItem('twc.session'); } catch (e) {} },
   };
 
+  try { if (TWC.session.get()) document.documentElement.classList.add('is-member'); } catch (e) {}
   TWC.fetchJSON = (url) => fetch(TWC.url(url), { headers: { accept: 'application/json' } }).then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); });
   TWC.initials = (name) => String(name || '').trim().split(/\s+/).slice(0, 2).map((s) => s[0] || '').join('').toUpperCase();
   TWC.esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
