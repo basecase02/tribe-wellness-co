@@ -1189,3 +1189,5 @@ html.is-member .announce, html.is-member .cta-band, html.is-member #cta { displa
 .nav__signout:hover { color: var(--lime); }
 .nav__signout::after { display: none; }
 html.is-member .session-bar { display: none; }
+/* Partners grid: centre cards (one or many) */
+@media (min-width: 900px) { .partners-grid { grid-template-columns: repeat(auto-fit, minmax(320px, 560px)); justify-content: center; } }
