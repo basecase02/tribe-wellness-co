@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Dependencies / build artefacts (none needed to deploy)
+node_modules/
+.netlify/
+*.log
+
+# Original photo downloads (53 MB) — the optimised WebP/JPEG derivatives in assets/img are committed.
+# Re-create with `bash tools/images.sh` after re-downloading originals from the Squarespace CDN (see PROJECT.md §7).
+assets/img/src/

@@ -1,0 +1,37 @@
+<div class="announce" id="announce" role="region" aria-label="Announcement">
+  <div class="container container--wide announce__inner">
+    <p class="announce__msg"><span class="announce__dot" aria-hidden="true"></span><strong>7 day free trial</strong><span class="hide-mobile">&nbsp;· classes included&nbsp;</span><a href="/join">Claim yours</a><span class="announce__sep hide-mobile">·</span><a class="hide-mobile" href="/kickstarter">28 Day Kickstarter from $199</a></p>
+    <button class="announce__close" type="button" aria-label="Dismiss announcement">✕</button>
+  </div>
+</div>
+<header class="site-header">
+  <div class="container container--wide site-header__inner">
+    <a class="logo" href="/" aria-label="Tribe Wellness Co — home">
+      <span class="logo__mark" aria-hidden="true">TWC</span>
+      <span class="logo__word">Tribe<br>Wellness<br>Co.</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">{{nav_links}}</ul>
+      <a class="btn btn--lime btn--sm" href="/join">Join now</a>
+    </nav>
+    <div class="header__mobile">
+      <a class="btn btn--lime btn--sm header__join" href="/join">Join</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <span class="menu-toggle__icon" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu__inner container container--wide">
+    <nav class="menu__links" aria-label="Menu">{{menu_links}}</nav>
+    <div class="menu__cta">
+      <a class="btn btn--lime btn--lg btn--block" href="/join">Start your 7 day free trial <svg class="btn__arrow"><use href="#i-arrow"/></svg></a>
+    </div>
+    <div class="menu__meta">
+      <a href="tel:{{phoneIntl}}"><svg><use href="#i-phone"/></svg>{{phone}}</a>
+      <a href="mailto:{{email}}"><svg><use href="#i-mail"/></svg>Email us</a>
+      <span class="social"><a href="https://www.instagram.com/tribewellnessco/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a><a href="https://www.facebook.com/tribewellnessco" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.6 1.6-1.6h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.3H7.4V14h2.8v8h3.3z"/></svg></a></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+{
+  "source": "Class timetable as published on tribewellnessco.com.au/timetable (captured 8 Oct 2026). The page switches to the live GymMaster schedule automatically once the API key is connected.",
+  "duration": 45,
+  "types": {
+    "semi": { "name": "Semi-private", "class": "slot--semi", "note": "Max 4–5 per coach" },
+    "group": { "name": "Small group", "class": "slot--group", "note": "Strength & functional" },
+    "over60": { "name": "Over 60s", "class": "slot--over60", "note": "Strength for life" },
+    "bootcamp": { "name": "Bootcamp", "class": "slot--special", "note": "All levels" },
+    "boxing": { "name": "Boxing", "class": "slot--special", "note": "Selected Sundays" }
+  },
+  "week": [
+    { "day": "Monday", "slots": [
+      { "time": "05:30", "types": ["semi", "group"] }, { "time": "06:15", "types": ["semi", "group"] }, { "time": "07:00", "types": ["group"] },
+      { "time": "07:45", "types": ["over60"] }, { "time": "09:15", "types": ["group"] }, { "time": "16:30", "types": ["semi", "group"] },
+      { "time": "17:30", "types": ["group"] }, { "time": "18:15", "types": ["group"] } ] },
+    { "day": "Tuesday", "slots": [
+      { "time": "05:30", "types": ["group"] }, { "time": "06:15", "types": ["group"] }, { "time": "07:00", "types": ["group"] },
+      { "time": "07:45", "types": ["over60"] }, { "time": "09:15", "types": ["group"] }, { "time": "16:45", "types": ["semi", "group"] },
+      { "time": "17:30", "types": ["group"] }, { "time": "18:15", "types": ["group"] } ] },
+    { "day": "Wednesday", "slots": [
+      { "time": "05:30", "types": ["semi", "group"] }, { "time": "06:15", "types": ["semi", "group"] }, { "time": "07:00", "types": ["group"] },
+      { "time": "09:15", "types": ["group"] }, { "time": "16:45", "types": ["semi", "group"] }, { "time": "17:30", "types": ["group"] },
+      { "time": "18:15", "types": ["group"] } ] },
+    { "day": "Thursday", "slots": [
+      { "time": "05:30", "types": ["semi", "group"] }, { "time": "06:15", "types": ["semi", "group"] }, { "time": "07:00", "types": ["group"] },
+      { "time": "08:45", "types": ["over60"] }, { "time": "09:15", "types": ["group"] }, { "time": "16:30", "types": ["semi", "group"] },
+      { "time": "17:30", "types": ["group"] }, { "time": "18:15", "types": ["group"] } ] },
+    { "day": "Friday", "slots": [
+      { "time": "05:30", "types": ["group"] }, { "time": "06:15", "types": ["semi", "group"] }, { "time": "07:00", "types": ["group"] },
+      { "time": "07:45", "types": ["over60"] }, { "time": "09:15", "types": ["group"] } ] },
+    { "day": "Saturday", "slots": [ { "time": "08:00", "types": ["bootcamp"] } ] },
+    { "day": "Sunday", "slots": [ { "time": "08:00", "types": ["boxing"], "note": "Selected Sundays — check the member portal" } ] }
+  ]
+}

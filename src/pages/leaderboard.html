@@ -1,0 +1,98 @@
+<!-- meta {
+  "path": "/leaderboard",
+  "title": "Member Leaderboard | Tribe Wellness Co",
+  "description": "Who's showing up at Tribe Wellness Co: check-ins, classes, PBs and goals earn Tribe Points. Weekly, monthly and all-time leaders.",
+  "og": "/assets/img/og/og-leaderboard.jpg",
+  "crumbs": ["Leaderboard"],
+  "noindex": true,
+  "scripts": ["/js/leaderboard.js"]
+} -->
+<main id="main">
+  <section class="section section--dark section--short page-head" id="top" aria-labelledby="lb-title">
+    <div class="container">
+      <div class="section__head" style="margin-bottom:0">
+        <div>
+          <ol class="hero__crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li>Leaderboard</li></ol>
+          <p class="eyebrow mt-3">Leaderboard <span class="chip chip--lime" style="margin-left:10px;font-size:.58rem"><svg style="width:10px;height:10px"><use href="#i-lock"/></svg> Members only</span></p>
+          <h1 class="display page-head__title" id="lb-title">Who's <span class="accent">showing up.</span></h1>
+        </div>
+        <div>
+          <p class="lead text-2">Rankings update every time a member checks in, finishes a class, logs a PB or ticks off a goal. Members pick a period and a category.</p>
+          <p class="lb-note mt-2" id="lb-note" style="color:rgba(255,255,255,.5)"></p>
+          <p class="small" id="lb-session" style="color:rgba(255,255,255,.6)" hidden></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--off" id="board" aria-label="Rankings" style="justify-content:flex-start">
+    <div class="container wall-teaser" id="lb-teaser">
+      <div class="gate__card gate__card--inline">
+        <span class="gate__icon" aria-hidden="true"><svg><use href="#i-lock"/></svg></span>
+        <p class="eyebrow" style="justify-content:center">Members only</p>
+        <h2 class="display display--md">Who's <span class="accent">showing up</span></h2>
+        <p class="text-2">The leaderboard is a members' thing: a weekly, monthly and all-time board built from check-ins, classes, PBs and goals. Already a member? Sign in through the portal to see where you sit.</p>
+        <div class="gate__actions">
+          <a class="btn btn--black btn--lg" href="/portal?next=/leaderboard">Member sign in <svg class="btn__arrow"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--outline" href="/join">Start a free trial</a>
+        </div>
+      </div>
+      <div class="teaser-grid">
+        <article class="teaser"><div class="teaser__head"><span class="avatar avatar--lime" aria-hidden="true"><svg><use href="#i-star"/></svg></span><b>Weekly podium</b></div><div class="skel" aria-hidden="true"><i style="width:58%"></i><i style="width:84%"></i><i style="width:42%"></i></div><p class="teaser__text">Top three members each week, with streaks and points. It resets every Monday, so anyone can take it.</p></article>
+        <article class="teaser"><div class="teaser__head"><span class="avatar avatar--black" aria-hidden="true"><svg><use href="#i-fire"/></svg></span><b>Consistency, goals and most improved</b></div><div class="skel" aria-hidden="true"><i style="width:76%"></i><i style="width:50%"></i><i style="width:66%"></i></div><p class="teaser__text">Four categories, so the board rewards turning up and progress, not just the biggest lifts.</p></article>
+        <article class="teaser"><div class="teaser__head"><span class="avatar avatar--outline" aria-hidden="true"><svg><use href="#i-user"/></svg></span><b>Your own numbers</b></div><div class="skel" aria-hidden="true"><i style="width:64%"></i><i style="width:80%"></i><i style="width:38%"></i></div><p class="teaser__text">Members see their rank, streak and visits in the portal, alongside bookings and membership details.</p></article>
+      </div>
+    </div>
+    <div class="container" id="lb-members" hidden>
+      <div class="lb-controls">
+        <div class="tabs" role="tablist" id="lb-period" aria-label="Period">
+          <button class="tab" role="tab" type="button" data-value="week" aria-selected="true">This week</button>
+          <button class="tab" role="tab" type="button" data-value="month" aria-selected="false">This month</button>
+          <button class="tab" role="tab" type="button" data-value="all" aria-selected="false">All time</button>
+        </div>
+        <div class="tabs tabs--lime" role="tablist" id="lb-cat" aria-label="Category">
+          <button class="tab" role="tab" type="button" data-value="overall" aria-selected="true">Overall</button>
+          <button class="tab" role="tab" type="button" data-value="consistency" aria-selected="false">Consistency</button>
+          <button class="tab" role="tab" type="button" data-value="goals" aria-selected="false">Goals</button>
+          <button class="tab" role="tab" type="button" data-value="improved" aria-selected="false">Most improved</button>
+        </div>
+      </div>
+      <div class="carousel" data-carousel="mobile" style="--car-w:84%"><div class="podium carousel__track" id="lb-podium" aria-live="polite"></div></div>
+      <div class="board-wrap">
+        <table class="board">
+          <thead><tr><th scope="col">#</th><th scope="col">Member</th><th scope="col">Streak</th><th scope="col" class="hide-sm">Check-ins</th><th scope="col" class="hide-sm">Goals</th><th scope="col" class="num-right">Points</th><th scope="col" class="hide-sm">Trend</th></tr></thead>
+          <tbody id="lb-rows"></tbody>
+        </table>
+      </div>
+      <div class="pager" id="lb-pager" aria-label="Leaderboard pages"></div><p class="lb-note mt-2 center" id="lb-foot"></p>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="how" aria-labelledby="how-title">
+    <div class="container">
+      <div class="section__head">
+        <div class="reveal"><p class="eyebrow">How points work</p><h2 class="display" id="how-title">Consistency beats <span class="accent">intensity</span></h2></div>
+        <div class="reveal" style="--i:1"><p class="text-2 measure-sm">Points are earned for showing up, not for lifting the most. The weekly and monthly boards reset; all-time keeps counting. Coaches verify PBs and goals.</p></div>
+      </div>
+      <div class="carousel" data-carousel="mobile" style="--car-w:58%"><div class="carousel__track how-grid">
+        <div class="how reveal" style="--i:0"><b>+20</b><span>Every gym check-in (one per day)</span></div>
+        <div class="how reveal" style="--i:1"><b>+15</b><span>Every class or coached session attended</span></div>
+        <div class="how reveal" style="--i:2"><b>+25</b><span>A personal best logged with your coach</span></div>
+        <div class="how reveal" style="--i:3"><b>+50</b><span>A goal ticked off at your check-in</span></div>
+        <div class="how reveal" style="--i:4"><b>+2</b><span>Each reaction you receive on the wall</span></div>
+        <div class="how reveal" style="--i:5"><b>+50</b><span>Bring a mate to a session</span></div>
+      </div></div>
+      <div class="split mt-4" style="align-items:center">
+        <div class="reveal"><h3 class="display--md display">See your own <span class="accent">numbers</span></h3><p class="text-2 mt-2 measure-sm">Sign in to the member portal with your GymMaster login to see your visits, streak and where you sit on the board.</p></div>
+        <div class="actions reveal" style="--i:1; justify-content:flex-end"><a class="btn btn--lime" href="/portal">Member portal <svg class="btn__arrow"><use href="#i-arrow"/></svg></a><a class="btn btn--outline" href="/community">Visit the wall</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--lime section--short cta-band" id="cta" aria-labelledby="cta-title">
+    <div class="container cta-band__grid">
+      <div class="reveal"><p class="eyebrow">Not on the board yet?</p><h2 class="display" id="cta-title">Start with a <span class="accent">free trial</span></h2><p class="cta-band__note measure-sm">Seven days, classes included. Your first check-in goes straight on the board.</p><div class="actions mt-3"><a class="btn btn--black btn--lg" href="/join">Start your 7 day free trial <svg class="btn__arrow"><use href="#i-arrow"/></svg></a></div></div>
+      <div class="media media--grade cta-band__media reveal reveal--scale" style="--i:1"><img src="/assets/img/group-smiling-1000.webp" width="1000" height="1333" alt="Tribe members celebrating after a session" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+</main>

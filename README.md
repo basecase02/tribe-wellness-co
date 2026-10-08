@@ -1,0 +1,85 @@
+# Tribe Wellness Co — website
+
+Static, SEO-first rebuild of [tribewellnessco.com.au](https://www.tribewellnessco.com.au) in plain HTML, CSS and light JavaScript. No framework, no build step required to deploy. Full brief, content and decisions live in [PROJECT.md](PROJECT.md).
+
+## Run it locally
+
+```bash
+npm run dev                   # → http://localhost:8765  (Node 18+ ; nothing to install)
+# or: node tools/serve.mjs [port]
+```
+
+If 8765 is busy the server moves to the next free port and prints the address. `npm run build` regenerates the pages, `npm run images` rebuilds the image derivatives.
+
+The dev server mimics Netlify: clean URLs (`/about` → `about.html`), `_redirects`, the `404.html` page and the `/api/gm/*` GymMaster proxy. Any static server works too (`npx serve .`, `python3 -m http.server`), but clean URLs then need the `.html` extension.
+
+## Edit pages
+
+Pages are generated from `src/` so the header, footer and `<head>` stay identical everywhere:
+
+```
+src/partials/head.html · header.html · footer.html     shared chrome, meta tags, global JSON-LD
+src/pages/*.html                                       one file per page: a <!-- meta {…} --> block + <main>
+node tools/build.mjs                                   → regenerates *.html at the root + sitemap.xml
+```
+
+Each page's meta block sets its title, description, Open Graph image, breadcrumbs, extra JSON-LD, scripts and `noindex`. Run the build after editing anything in `src/` (Netlify also runs it on deploy).
+
+## Deploy (Netlify)
+
+1. Push the folder to a Git repo and create a Netlify site from it (build command and publish directory are already in `netlify.toml`).
+2. Add the environment variable `GYMMASTER_API_KEY` (GymMaster → Settings → Integrations → API key *for members*). Until it's set, the timetable shows the published timetable, and the member portal offers a demo dashboard instead of sign-in.
+3. Point the domain's DNS at Netlify. The `_redirects` file keeps the old Squarespace URLs working (`/services-6-1`, `/28-day-trial-offer`, `/our-team`, `/prana-physiotherapy`, `/7dayfreetrial`).
+4. Netlify Forms picks up the contact form automatically; set the notification email under Forms → Notifications.
+
+Vercel / Cloudflare Pages also work for the static pages; only the API proxy (`netlify/functions/gm.mjs`) is Netlify-specific and is a 40-line function to port. Deploy at the domain root (asset paths are absolute).
+
+## GymMaster integration
+
+`js/gymmaster.js` is a small client for the [GymMaster Member Portal API](https://www.gymmaster.com/gymmaster-api/). Every call goes through `netlify/functions/gm.mjs`, which adds the API key server-side so it never reaches the browser, and only allows the endpoints the site uses:
+
+| Feature | Endpoints |
+|---|---|
+| Live class timetable (`/timetable`) | `v1/booking/classes/schedule` |
+| Member portal sign-in (`/portal`) | `v1/login`, `v1/email/resetpassword` |
+| Dashboard: profile, memberships, balances | `v1/member/profile`, `v1/member/memberships`, `v1/member/membership/benefit/balances`, `v1/member/outstandingbalance` |
+| Bookings: list, book, cancel | `v2/member/bookings`, `v2/member/bookings/past`, `v2/booking/classes`, `v1/member/cancelbooking` |
+| Stats: visits | `v2/member/visits/daily`, `v1/member/visits/monthly` |
+| Lead capture (ready to wire into forms) | `v1/prospect/create`, `v1/email/feedback` |
+
+The community wall and leaderboard are members-only: visitors see a data-free explainer with sign-in, free-trial and "preview as a member" buttons; anyone with a member session (real GymMaster login through `/portal`, or the demo) sees the wall. Leaderboard and wall ship with sample data in `data/` (clearly labelled) and are `noindex` until they're connected to real check-ins. Swap `data/leaderboard.json` for an endpoint that aggregates GymMaster visits, and the wall's `localStorage` persistence for a small backend, when the client is ready.
+
+## Partners
+
+`/partners` lists strategic partners (Prana Physio & Wellness first). To add one, copy the `<article class="partner-card">` block in `src/pages/partners.html`, drop the logo into `assets/img/partner-<name>.png` and rebuild. The home page partner band and the physio page link there.
+
+## UI components
+
+- **Carousel**: wrap any grid in `<div class="carousel" data-carousel="mobile">` (phone only) or `data-carousel="all"` and add `carousel__track` to the grid. Arrows and dots are injected by `js/main.js`; `--car-w` sets the card width on phones.
+- **Pager**: `TWC.pager(el, { page, pages, onChange })` renders numbered pagination (used by the leaderboard, wall and portal lists).
+- **Announcement bar**: edit the text in `src/partials/header.html`; it's dismissible per session.
+- **Loader**: branded barbell loader on every page load, roughly a second (skipped for reduced-motion users and when `?nomotion=1` is set).
+
+## Images
+
+Originals from the Squarespace CDN are in `assets/img/src/`; optimised WebP sizes and the 1200×630 Open Graph JPEGs are generated by:
+
+```bash
+bash tools/images.sh          # needs ffmpeg + cwebp (brew install ffmpeg webp)
+```
+
+The three membership clips are in `assets/video/` (muted MP4 + poster).
+
+## Structure
+
+```
+index.html … partners.html, portal.html, 404.html   generated pages (don't edit by hand — edit src/)
+css/style.css                        design tokens, layout, components
+js/main.js                           header, menu, reveal, ticker, video, lightbox, forms
+js/gymmaster.js                      API client + session helper
+js/home.js · timetable.js · leaderboard.js · community.js · portal.js
+data/                                timetable, leaderboard and community data
+netlify/functions/gm.mjs             GymMaster API proxy
+tools/build.mjs · serve.mjs · images.sh
+_redirects · netlify.toml · robots.txt · sitemap.xml · site.webmanifest · favicon.ico
+```

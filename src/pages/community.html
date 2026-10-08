@@ -1,0 +1,90 @@
+<!-- meta {
+  "path": "/community",
+  "title": "Community Wall | Tribe Wellness Co",
+  "description": "Share wins, find a training partner and hype each other up on the Tribe Wellness Co community wall. Shoutouts, weekly challenges and top hype givers.",
+  "og": "/assets/img/og/og-community.jpg",
+  "crumbs": ["Community"],
+  "noindex": true,
+  "scripts": ["/js/community.js"]
+} -->
+<main id="main">
+  <section class="section section--dark section--short page-head" id="top" aria-labelledby="wall-title">
+    <div class="container">
+      <div class="section__head" style="margin-bottom:0">
+        <div>
+          <ol class="hero__crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li>Community</li></ol>
+          <p class="eyebrow mt-3">Community wall <span class="chip chip--lime" style="margin-left:10px;font-size:.58rem"><svg style="width:10px;height:10px"><use href="#i-lock"/></svg> Members only</span></p>
+          <h1 class="display page-head__title" id="wall-title">The <span class="accent">wall.</span></h1>
+        </div>
+        <div>
+          <p class="lead text-2">Share a win, ask for a spot, or hype someone up. Every reaction you receive earns +2 Tribe Points.</p>
+          <p class="small" id="wall-session" style="color:rgba(255,255,255,.6)" hidden></p>
+          <p class="lb-note mt-2" id="wall-note" style="color:rgba(255,255,255,.5)"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--off" id="wall" aria-label="Community wall" style="justify-content:flex-start">
+    <div class="container wall-teaser" id="wall-teaser">
+      <div class="gate__card gate__card--inline">
+        <span class="gate__icon" aria-hidden="true"><svg><use href="#i-lock"/></svg></span>
+        <p class="eyebrow" style="justify-content:center">Members only</p>
+        <h2 class="display display--md">Inside the <span class="accent">tribe</span></h2>
+        <p class="text-2">The wall is where Tribe members share wins, find a training partner and hype each other up. It's part of being a member. Already with us? Sign in through the member portal.</p>
+        <div class="gate__actions">
+          <a class="btn btn--black btn--lg" href="/portal?next=/community">Member sign in <svg class="btn__arrow"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--outline" href="/join">Start a free trial</a>
+        </div>
+      </div>
+      <div class="teaser-grid">
+        <article class="teaser"><div class="teaser__head"><span class="avatar avatar--lime" aria-hidden="true"><svg><use href="#i-fire"/></svg></span><b>Share your wins</b></div><div class="skel" aria-hidden="true"><i style="width:82%"></i><i style="width:64%"></i><i style="width:40%"></i></div><p class="teaser__text">First pull-up, a bodyweight deadlift, four sessions in a week. Post it and the tribe reacts.</p></article>
+        <article class="teaser"><div class="teaser__head"><span class="avatar avatar--black" aria-hidden="true"><svg><use href="#i-clap"/></svg></span><b>Find a training partner</b></div><div class="skel" aria-hidden="true"><i style="width:70%"></i><i style="width:88%"></i><i style="width:35%"></i></div><p class="teaser__text">Ask who's at the 5.30am semi-private, swap tips, or line up a spotter for Thursday.</p></article>
+        <article class="teaser"><div class="teaser__head"><span class="avatar avatar--outline" aria-hidden="true"><svg><use href="#i-muscle"/></svg></span><b>Shoutouts &amp; challenges</b></div><div class="skel" aria-hidden="true"><i style="width:60%"></i><i style="width:76%"></i><i style="width:48%"></i></div><p class="teaser__text">Weekly challenges, coach shoutouts and a hype-giver board. Every reaction you receive earns Tribe Points.</p></article>
+      </div>
+    </div>
+    <div class="container wall" id="wall-grid" hidden>
+      <div>
+        <div class="composer" id="composer">
+          <div class="composer__top">
+            <span class="avatar avatar--lime" aria-hidden="true">You</span>
+            <label class="sr-only" for="post-text">Your post</label>
+            <textarea id="post-text" placeholder="Share a win, ask for a spot, or hype someone up…" maxlength="600"></textarea>
+          </div>
+          <div class="composer__bar">
+            <div class="type-chips" role="group" aria-label="Post type">
+              <button class="chip" type="button" data-type="win" aria-pressed="true">Win</button>
+              <button class="chip" type="button" data-type="question" aria-pressed="false">Question</button>
+              <button class="chip" type="button" data-type="shoutout" aria-pressed="false">Shoutout</button>
+              <button class="chip" type="button" data-type="motivation" aria-pressed="false">Motivation</button>
+            </div>
+            <button class="btn btn--lime" id="post-btn" type="button">Post to the wall <svg class="btn__arrow"><use href="#i-arrow"/></svg></button>
+          </div>
+          <p class="composer__note" id="composer-note">Posts are saved in your browser only (demo). Every reaction you receive earns +2 Tribe Points.</p>
+        </div>
+        <div class="tabs feed-filters" role="tablist" id="feed-filter" aria-label="Filter posts">
+          <button class="tab" role="tab" type="button" data-value="all" aria-selected="true">All</button>
+          <button class="tab" role="tab" type="button" data-value="wins" aria-selected="false">Wins</button>
+          <button class="tab" role="tab" type="button" data-value="questions" aria-selected="false">Questions</button>
+          <button class="tab" role="tab" type="button" data-value="shoutouts" aria-selected="false">Shoutouts</button>
+          <button class="tab" role="tab" type="button" data-value="coaches" aria-selected="false">From coaches</button>
+        </div>
+        <div class="feed" id="feed" aria-live="polite"></div>
+        <div class="pager" id="feed-pager" aria-label="Wall pages"></div>
+      </div>
+      <aside class="sidebar carousel" data-carousel="mobile" style="--car-w:86%" aria-label="Community highlights"><div class="sidebar__track carousel__track">
+        <div class="widget widget--dark" id="w-shoutout"></div>
+        <div class="widget" id="w-challenge"></div>
+        <div class="widget" id="w-hype"></div>
+        <div class="widget"><p class="eyebrow">House rules</p><ul class="checklist"><li>Hype first, advise second.</li><li>Ask before you film someone.</li><li>No selling, no spam.</li><li>Coaches moderate — be kind.</li></ul></div>
+      </div></aside>
+    </div>
+  </section>
+
+  <section class="section section--lime section--short cta-band" id="cta" aria-labelledby="cta-title">
+    <div class="container cta-band__grid">
+      <div class="reveal"><p class="eyebrow">Join the conversation</p><h2 class="display" id="cta-title">Find your <span class="accent">tribe</span></h2><p class="cta-band__note measure-sm">The wall is for members. Start with a 7 day free trial and you're in.</p><div class="actions mt-3"><a class="btn btn--black btn--lg" href="/join">Start your free trial <svg class="btn__arrow"><use href="#i-arrow"/></svg></a><a class="btn btn--outline" href="/leaderboard">See the leaderboard</a></div></div>
+      <div class="media media--grade cta-band__media reveal reveal--scale" style="--i:1"><img src="/assets/img/social-group-floor-1000.webp" width="1000" height="750" alt="Members training together on the floor" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+</main>

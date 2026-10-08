@@ -1,0 +1,89 @@
+<!-- meta {
+  "path": "/contact",
+  "title": "Contact Tribe Wellness Co | Gym in Jolimont WA",
+  "description": "Questions about memberships, personal training or classes? Visit 25 Bishop Street, Jolimont, call 0405 476 121 or send Tribe Wellness Co a message.",
+  "og": "/assets/img/og/og-contact.jpg",
+  "preload": "/assets/img/building-exterior-1-2000.webp",
+  "crumbs": ["Contact"],
+  "priority": "0.8"
+} -->
+<main id="main">
+  <section class="hero hero--inner" aria-label="Contact us">
+    <div class="hero__media"><img src="/assets/img/building-exterior-1-2000.webp" srcset="/assets/img/building-exterior-1-1200.webp 1200w, /assets/img/building-exterior-1-2000.webp 2000w" sizes="100vw" width="2000" height="989" alt="Exterior of the Tribe Wellness Co building in Jolimont with signage, large windows and potted plants" fetchpriority="high" decoding="async" style="object-position:50% 35%"></div>
+    <div class="container hero__content">
+      <ol class="hero__crumbs" aria-label="Breadcrumb"><li><a href="/">Home</a></li><li>Contact</li></ol>
+      <h1 class="hero__title">Say <span class="accent">hello.</span></h1>
+      <p class="hero__sub">Have questions? Ask about memberships, personal training, over 60s classes or FIFO options — or just drop in during staffed hours.</p>
+      <div class="hero__actions"><a class="btn btn--lime" href="#form">Send a message <svg class="btn__arrow"><use href="#i-arrow"/></svg></a><a class="btn btn--outline" href="tel:+61405476121">Call 0405 476 121</a></div>
+    </div>
+  </section>
+
+  <section class="section section--off" id="form" aria-labelledby="form-title">
+    <div class="container split split--wide-left" style="align-items:start">
+      <div class="panel reveal">
+        <p class="eyebrow">Contact us</p>
+        <h2 class="display display--md" id="form-title">Have <span class="accent">questions?</span></h2>
+        <form class="form mt-3" name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" data-ajax>
+          <input type="hidden" name="form-name" value="contact">
+          <p class="sr-only" aria-hidden="true"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="form__fields stack">
+            <div class="form__row">
+              <div class="field"><label class="field__label" for="first">First name *</label><input class="input" id="first" name="first_name" autocomplete="given-name" required></div>
+              <div class="field"><label class="field__label" for="last">Last name *</label><input class="input" id="last" name="last_name" autocomplete="family-name" required></div>
+            </div>
+            <div class="form__row">
+              <div class="field"><label class="field__label" for="email">Email *</label><input class="input" id="email" type="email" name="email" autocomplete="email" required></div>
+              <div class="field"><label class="field__label" for="phone">Phone</label><input class="input" id="phone" type="tel" name="phone" autocomplete="tel"></div>
+            </div>
+            <div class="field"><label class="field__label" for="subject">Subject *</label>
+              <select class="select" id="subject" name="subject" required>
+                <option value="">Choose a topic…</option>
+                <option>General enquiry</option><option>Memberships &amp; pricing</option><option>7 day free trial</option><option>28 Day Kickstarter</option><option>Personal training</option><option>Ladies over 60</option><option>FIFO membership</option><option>Prana Physio</option><option>Strategic partnership enquiry</option><option>Something else</option>
+              </select></div>
+            <div class="field"><label class="field__label" for="message">Message *</label><textarea class="textarea" id="message" name="message" required></textarea></div>
+            <label class="check"><input type="checkbox" name="newsletter" value="yes"><span>Sign up for news and offers from Tribe Wellness Co.</span></label>
+            <div class="flex-between"><button class="btn btn--black btn--lg" type="submit">Submit <svg class="btn__arrow"><use href="#i-arrow"/></svg></button><span class="form__note">We usually reply within one business day.</span></div>
+          </div>
+          <div class="form__success" tabindex="-1" role="status">Thank you! Your message is on its way — we'll be in touch soon.</div>
+        </form>
+      </div>
+      <div class="stack reveal" style="--i:1">
+        <div class="panel panel--dark">
+          <p class="eyebrow">Tribe HQ</p>
+          <div class="info-list">
+            <div class="info-list__item"><span class="info-list__label">Address</span><span class="info-list__value">25 Bishop Street, Jolimont WA 6014</span></div>
+            <div class="info-list__item"><span class="info-list__label">Phone</span><span class="info-list__value"><a href="sms:+61405476121">0405 476 121</a> <span class="small text-2">(call or SMS)</span></span></div>
+            <div class="info-list__item"><span class="info-list__label">E-mail</span><span class="info-list__value"><a href="mailto:info@tribewellnessco.com.au">info@tribewellnessco.com.au</a></span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <p class="eyebrow">Hours</p>
+          <div class="hours">
+            <div><span>Monday – Thursday</span><span>5.30am – 7.00pm</span></div>
+            <div><span>Friday</span><span>5.30am – 12.00pm</span></div>
+            <div><span>Saturday</span><span>8.00am – 12.00pm</span></div>
+            <div><span>Sunday</span><span>Closed (members 24/7)</span></div>
+          </div>
+          <p class="small text-2 mt-2">Appointments by bookings only. Members have 24/7 gym access.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white section--short" id="map" aria-labelledby="map-title">
+    <div class="container">
+      <div class="section__head">
+        <div class="reveal"><p class="eyebrow">Find us</p><h2 class="display display--md" id="map-title">Bishop Street, <span class="accent">Jolimont</span></h2></div>
+        <div class="reveal actions" style="--i:1; justify-content:flex-end"><a class="btn btn--black" href="https://www.google.com/maps/dir//25+Bishop+St,+Jolimont+WA+6014" target="_blank" rel="noopener">Get directions <svg class="btn__arrow"><use href="#i-external"/></svg></a></div>
+      </div>
+      <div class="map reveal reveal--scale" style="aspect-ratio:21/9"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3385.5861682646364!2d115.81010461516115!3d-31.94499098123125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2a32a50cc997a873%3A0x98eee6c6fe149bde!2s25%20Bishop%20St%2C%20Jolimont%20WA%206014%2C%20Australia!5e0!3m2!1sen!2sau!4v1637576575379!5m2!1sen!2sau" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map showing Tribe Wellness Co at 25 Bishop Street, Jolimont"></iframe></div>
+    </div>
+  </section>
+
+  <section class="section section--lime section--short cta-band" id="cta" aria-labelledby="cta-title">
+    <div class="container cta-band__grid">
+      <div class="reveal"><p class="eyebrow">Not sure where to start?</p><h2 class="display" id="cta-title">Come and <span class="accent">try us</span></h2><p class="cta-band__note measure-sm">The 7 day free trial is the easiest way to see if Tribe is the right place for you.</p><div class="actions mt-3"><a class="btn btn--black btn--lg" href="/join">Start your free trial <svg class="btn__arrow"><use href="#i-arrow"/></svg></a></div></div>
+      <div class="media media--grade cta-band__media reveal reveal--scale" style="--i:1"><img src="/assets/img/group-smiling-1000.webp" width="1000" height="1333" alt="Group of Tribe members smiling with their hands up" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+</main>

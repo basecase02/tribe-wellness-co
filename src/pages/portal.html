@@ -1,0 +1,94 @@
+<!-- meta {
+  "path": "/portal",
+  "title": "Member Portal | Tribe Wellness Co",
+  "description": "Sign in to the Tribe Wellness Co member portal to book classes, track your visits and manage your membership.",
+  "og": "/assets/img/og/og-home.jpg",
+  "noindex": true,
+  "bodyClass": "page-portal no-mobile-cta",
+  "scripts": ["/js/portal.js"]
+} -->
+<main id="main">
+  <section class="section section--dark page-head" id="login" aria-labelledby="login-title">
+    <div class="container split split--wide-left">
+      <div class="reveal">
+        <p class="eyebrow">Member portal</p>
+        <h1 class="display page-head__title" id="login-title">Welcome <span class="accent">back.</span></h1>
+        <p class="lead text-2 mt-3 measure-sm">Sign in with your GymMaster member login to book classes, track your visits and manage your membership — all in one place.</p>
+        <p class="small" id="portal-next" hidden style="color:var(--lime)">Sign in to open the members-only community wall.</p>
+        <div class="icon-row mt-3"><span><svg><use href="#i-check"/></svg>Book &amp; cancel classes</span><span><svg><use href="#i-check"/></svg>Visits, streaks &amp; stats</span><span><svg><use href="#i-check"/></svg>Membership &amp; balances</span></div>
+        <p class="small text-2 mt-3">Not a member yet? <a class="text-lime" href="/join">Start a 7 day free trial</a>.</p>
+      </div>
+      <form class="login reveal" id="login-form" style="--i:1" novalidate>
+        <p class="eyebrow">Sign in</p>
+        <div class="stack">
+          <div class="alert" id="login-error" role="alert" hidden></div>
+          <div class="field"><label class="field__label" for="login-email">Email</label><input class="input" id="login-email" name="email" type="email" autocomplete="username" required></div>
+          <div class="field"><label class="field__label" for="login-pass">Password</label><input class="input" id="login-pass" name="password" type="password" autocomplete="current-password" required></div>
+          <button class="btn btn--black btn--lg btn--block" type="submit" id="login-btn">Sign in <svg class="btn__arrow"><use href="#i-arrow"/></svg></button>
+          <div class="flex-between"><button class="link-arrow" type="button" id="forgot-btn" style="font-size:.68rem">Forgot password?</button><a class="small text-2" href="https://tribewellnessco.gymmasteronline.com/portal/" target="_blank" rel="noopener">Open the GymMaster portal ↗</a></div>
+          <div class="alert alert--info" id="login-demo" hidden><b>Preview mode.</b> The GymMaster connection isn't switched on yet, so real sign-in is disabled. The demo signs you in as a sample member and unlocks the members-only pages until you sign out. <button class="btn btn--lime btn--sm mt-1" type="button" id="demo-btn">Sign in as a demo member</button></div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section--off page-head" id="dashboard" aria-label="Member dashboard" hidden style="justify-content:flex-start">
+    <div class="container">
+      <div class="portal-head">
+        <div class="portal-head__who"><span class="avatar avatar--xl avatar--black" id="d-avatar" aria-hidden="true">·</span><div><span class="caps text-2" style="font-size:.62rem">Welcome back</span><b id="d-name">—</b><span id="d-plan">—</span></div></div>
+        <div class="actions"><span class="chip chip--outline" id="d-mode" hidden>Demo data</span><a class="btn btn--outline btn--sm" href="/leaderboard">Leaderboard</a><button class="btn btn--black btn--sm" type="button" id="logout-btn">Sign out</button></div>
+      </div>
+      <div class="tabs mb-3" role="tablist" id="d-tabs" aria-label="Portal sections">
+        <button class="tab" role="tab" type="button" data-value="overview" aria-selected="true">Overview</button>
+        <button class="tab" role="tab" type="button" data-value="book" aria-selected="false">Book a class</button>
+        <button class="tab" role="tab" type="button" data-value="bookings" aria-selected="false">My bookings</button>
+        <button class="tab" role="tab" type="button" data-value="stats" aria-selected="false">My stats</button>
+        <button class="tab" role="tab" type="button" data-value="account" aria-selected="false">Account</button>
+      </div>
+      <div class="alert mb-2" id="d-error" role="alert" hidden></div>
+
+      <div id="panel-overview" data-panel>
+        <div class="tiles mb-3" id="d-tiles"></div>
+        <div class="portal-grid">
+          <div class="panel"><div class="panel__head"><h2 class="panel__title">Upcoming bookings</h2><button class="link-arrow" type="button" data-goto="book">Book a class <svg><use href="#i-arrow"/></svg></button></div><div class="rows" id="d-upcoming"></div></div>
+          <div class="stack">
+            <div class="panel panel--dark"><p class="eyebrow">This week on the board</p><p id="d-board" style="color:rgba(255,255,255,.75)">Every check-in and class you attend counts towards your Tribe Points.</p><div class="actions mt-2"><a class="btn btn--lime btn--sm" href="/leaderboard">See the leaderboard</a><a class="btn btn--outline btn--sm" href="/community">Community wall</a></div></div>
+            <div class="panel"><p class="eyebrow">Quick links</p><ul class="footer__links" style="color:var(--text)"><li><a href="/timetable">Class timetable</a></li><li><a href="https://tribewellnessco.gymmasteronline.com/portal/" target="_blank" rel="noopener">Payments &amp; contracts (GymMaster) ↗</a></li><li><a href="/physio">Book physio</a></li><li><a href="/contact">Contact the team</a></li></ul></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="panel-book" data-panel hidden>
+        <div class="panel">
+          <div class="panel__head"><h2 class="panel__title">Book a class</h2><div class="tt-week"><button type="button" id="bk-prev" aria-label="Previous week"><svg><use href="#i-chev-l"/></svg></button><span id="bk-range">Week</span><button type="button" id="bk-next" aria-label="Next week"><svg><use href="#i-chev-r"/></svg></button></div></div>
+          <div class="day-bar" id="bk-daybar" style="display:flex" role="tablist" aria-label="Choose a day"></div>
+          <div class="class-list" id="bk-list"><p class="row__empty">Loading classes…</p></div>
+        </div>
+      </div>
+
+      <div id="panel-bookings" data-panel hidden>
+        <div class="portal-grid">
+          <div class="panel"><div class="panel__head"><h2 class="panel__title">Upcoming</h2></div><div class="rows" id="d-bookings"></div><div class="pager" id="pg-bookings"></div></div>
+          <div class="panel"><div class="panel__head"><h2 class="panel__title">Past sessions</h2></div><div class="rows" id="d-past"></div><div class="pager" id="pg-past"></div></div>
+        </div>
+      </div>
+
+      <div id="panel-stats" data-panel hidden>
+        <div class="portal-grid">
+          <div class="panel"><div class="panel__head"><h2 class="panel__title">Visits per month</h2><span class="small text-2" id="d-visits-total"></span></div><div class="bars" id="d-bars"></div></div>
+          <div class="panel"><div class="panel__head"><h2 class="panel__title">Last 12 weeks</h2><span class="small text-2">Mon → Sun</span></div><div class="heat" id="d-heat" aria-label="Daily visits over the last 12 weeks"></div><p class="small text-2 mt-2" id="d-heat-note"></p></div>
+        </div>
+      </div>
+
+      <div id="panel-account" data-panel hidden>
+        <div class="portal-grid">
+          <div class="panel"><div class="panel__head"><h2 class="panel__title">Profile</h2></div><div class="info-list" id="d-profile"></div></div>
+          <div class="stack">
+            <div class="panel"><div class="panel__head"><h2 class="panel__title">Memberships</h2></div><div class="rows" id="d-memberships"></div></div>
+            <div class="panel"><div class="panel__head"><h2 class="panel__title">Account</h2></div><div class="info-list" id="d-balance"></div><p class="small text-2 mt-2">Payments, suspensions and contracts are handled securely in the <a href="https://tribewellnessco.gymmasteronline.com/portal/" target="_blank" rel="noopener">GymMaster portal</a>.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

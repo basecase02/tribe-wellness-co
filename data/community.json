@@ -1,0 +1,17 @@
+{
+  "demo": true,
+  "note": "Seed content for the community wall. Posts you add in the browser are saved locally (demo) until the wall is connected to a backend.",
+  "shoutout": { "name": "Mei Chen", "meta": "Over 60s · 14 week streak", "quote": "Mei turned up to every single over 60s session this term, brought a friend along, and deadlifted her bodyweight on Tuesday. That's what Tribe looks like.", "by": "Coach Rosely" },
+  "challenge": { "title": "Bring a mate to a session", "body": "Friends train free this week. Post a photo together on the wall for a bonus +50 Tribe Points each.", "progress": 31, "target": 50, "unit": "mates brought in" },
+  "hype": [ { "name": "Tom Baxter", "score": 142 }, { "name": "Priya Nair", "score": 118 }, { "name": "Hannah Lee", "score": 97 }, { "name": "Luca Romano", "score": 84 }, { "name": "Grace O'Neill", "score": 71 } ],
+  "posts": [
+    { "id": "p1", "author": "Jermaine", "role": "coach", "type": "motivation", "pinned": true, "time": "Pinned", "body": "New month, new board. Reminder of what the leaderboard actually rewards: turning up. Four sessions a week at your pace beats one hero session. Set a check-in goal with your coach this week and let's go.", "reactions": { "fire": 48, "clap": 31, "muscle": 22 }, "replies": 1 },
+    { "id": "p2", "author": "Mei Chen", "role": "member", "badge": "Iron streak", "type": "win", "time": "2h", "body": "Deadlifted my bodyweight today at 63 years old. Eighteen months ago I couldn't get off the floor without a hand. Thank you Rosely and the 7.45 crew for never letting me sit one out.", "reactions": { "fire": 64, "clap": 52, "muscle": 71 }, "replies": 2 },
+    { "id": "p3", "author": "Aisha Rahman", "role": "member", "type": "win", "time": "5h", "body": "First unassisted pull-up. Took eleven months. Worth every rep.", "reactions": { "fire": 39, "clap": 28, "muscle": 44 }, "replies": 3 },
+    { "id": "p4", "author": "Tom Baxter", "role": "member", "type": "question", "time": "Yesterday", "body": "Anyone doing the 5:30am Thursday semi-private? Looking for a regular training partner for the next block.", "reactions": { "fire": 4, "clap": 2, "muscle": 6 }, "replies": 4 },
+    { "id": "p5", "author": "Shiv", "role": "coach", "type": "motivation", "time": "Yesterday", "body": "Women's strength block starts Monday 6:15. Bring a mate — friends train free this week. No experience needed, just turn up.", "reactions": { "fire": 27, "clap": 19, "muscle": 15 }, "replies": 0 },
+    { "id": "p6", "author": "Priya Nair", "role": "member", "type": "shoutout", "time": "2 days", "body": "Shoutout to Hannah for talking me through my first sled push on Tuesday. Didn't die. Might even go back.", "reactions": { "fire": 21, "clap": 33, "muscle": 9 }, "replies": 2 },
+    { "id": "p7", "author": "Ben Carter", "role": "member", "type": "win", "time": "3 days", "body": "FIFO swing done, straight back into the 4:30 sessions. Seven check-ins this week and I'm somehow still third. Zoe, I'm coming for you.", "reactions": { "fire": 30, "clap": 12, "muscle": 25 }, "replies": 5 },
+    { "id": "p8", "author": "Rosely", "role": "coach", "type": "shoutout", "time": "4 days", "body": "Over 60s crew: 100% attendance this term. Every single session. That's the Tribe standard right there.", "reactions": { "fire": 58, "clap": 61, "muscle": 20 }, "replies": 6 }
+  ]
+}

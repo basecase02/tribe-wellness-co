@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /portal
+Disallow: /src/
+Disallow: /tools/
+Disallow: /netlify/
+
+Sitemap: https://www.tribewellnessco.com.au/sitemap.xml

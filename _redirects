@@ -1,0 +1,11 @@
+# Old Squarespace paths → new pages (301 keeps Google rankings + existing links working)
+/services-6-1          /memberships   301
+/28-day-trial-offer    /kickstarter   301
+/our-team              /team          301
+/prana-physiotherapy   /physio        301
+/7dayfreetrial         /join          301
+/jo                    /join          301
+/login                 /portal        301
+/member-login          /portal        301
+# GymMaster API proxy (Netlify Function holds the API key)
+/api/gm/*              /.netlify/functions/gm/:splat   200
