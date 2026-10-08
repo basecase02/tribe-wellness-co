@@ -1185,3 +1185,7 @@ html.is-member .announce, html.is-member .cta-band, html.is-member #cta { displa
 .plan--featured .plan__price b { color: var(--lime); }
 .plan--featured .plan__price small { color: rgba(255, 255, 255, .6); }
 .plan--featured .btn--lime { color: var(--black); }
+.nav__signout { color: rgba(255, 255, 255, .5); font-size: .78rem; }
+.nav__signout:hover { color: var(--lime); }
+.nav__signout::after { display: none; }
+html.is-member .session-bar { display: none; }

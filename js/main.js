@@ -124,13 +124,20 @@ window.TWC = window.TWC || {};
   const $$ = (s, c = d) => Array.from(c.querySelectorAll(s));
   const reduce = w.matchMedia('(prefers-reduced-motion: reduce)').matches || d.documentElement.classList.contains('no-motion');
 
-  /* Member session bar: visible on every page while a (real or demo) portal session exists */
-  const sess = w.TWC && TWC.session && TWC.session.get(); const hdr = $('.site-header');
-  if (sess) $$('.header__cta').forEach((a) => { a.textContent = 'Account'; a.href = TWC.url('/portal'); });
-  if (sess && hdr) {
-    const who = sess.demo ? 'Demo member' : 'Member';
-    hdr.insertAdjacentHTML('afterend', `<div class="session-bar" role="status"><div class="container container--wide session-bar__inner"><span><svg><use href="#i-user"/></svg> Signed in as <b>${who}</b>${sess.demo ? ' (preview session)' : ''}</span><span class="session-bar__actions"><a href="${TWC.url('/portal')}">Member portal</a><a href="${TWC.url('/leaderboard')}">Leaderboard</a><a href="${TWC.url('/community')}">Wall</a><button type="button" id="session-signout">Sign out</button></span></div></div>`);
-    $('#session-signout').addEventListener('click', () => { TWC.session.clear(); try { sessionStorage.removeItem('twc.demoMember'); } catch (e) {} location.href = location.pathname.endsWith('/portal') ? TWC.url('/') : location.pathname; });
+  /* Signed-in members: lean navigation, no promotional links, no session bar */
+  const sess = w.TWC && TWC.session && TWC.session.get();
+  if (sess) {
+    const here = location.pathname.replace(/\/$/, '') || '/';
+    const links = [['Timetable', '/timetable'], ['Leaderboard', '/leaderboard'], ['Community wall', '/community'], ['Partners', '/partners'], ['Account', '/portal']];
+    const cur = (h) => (h === here ? ' aria-current="page"' : '');
+    const list = $('.nav__list');
+    if (list) list.innerHTML = links.map(([l, h]) => `<li class="nav__item"><a class="nav__link" href="${TWC.url(h)}"${cur(h)}>${l}</a></li>`).join('') + '<li class="nav__item"><button type="button" class="nav__link nav__signout" id="nav-signout">Sign out</button></li>';
+    $$('.header__cta').forEach((a) => { a.textContent = sess.demo ? 'Demo member' : 'My account'; a.href = TWC.url('/portal'); });
+    const menu = $('.menu__links');
+    if (menu) menu.innerHTML = `<div class="menu__group"><p class="menu__label">${sess.demo ? 'Demo member' : 'Member'}</p>${links.map(([l, h], i) => `<a href="${TWC.url(h)}" style="--i:${i}"${cur(h)}><span>${l}</span><svg aria-hidden="true"><use href="#i-arrow-ne"/></svg></a>`).join('')}<a href="#" style="--i:5" id="menu-signout"><span>Sign out</span><svg aria-hidden="true"><use href="#i-arrow-ne"/></svg></a></div>`;
+    const cta = $('.menu__cta'); if (cta) cta.innerHTML = `<a class="btn btn--lime btn--lg btn--block" href="${TWC.url('/timetable')}">Book a class <svg class="btn__arrow"><use href="#i-arrow"/></svg></a>`;
+    const out = (e) => { e.preventDefault(); TWC.session.clear(); try { sessionStorage.removeItem('twc.demoMember'); } catch (err) {} location.href = TWC.url('/'); };
+    $('#nav-signout')?.addEventListener('click', out); $('#menu-signout')?.addEventListener('click', out);
   }
 
   /* Announcement bar */
