@@ -39,21 +39,23 @@
 
 **Original brief:** warm orange and white, bold way of showing fitness, premium-gym feel, must sit well with the black/white TWC logo.
 
-**Revised direction (Oct 2026):** black, lime and yellow. Classy and editorial rather than loud: every section fits one viewport, generous whitespace, refined type sizes (not "zoomed in"), big photography with a consistent dark grade. Reference for feel: https://lsn-lagree.netlify.app (cream/dark alternation, thin letter-spaced labels, full-bleed heroes, Google reviews, journal cards).
+**Revised direction (Oct 2026):** black, vibrant orange and white. Classy and editorial rather than loud: every section fits one viewport, generous whitespace, refined type sizes (not "zoomed in"), big photography with a consistent dark grade. Reference: https://tribewellness.vercel.app/
 
 ### Palette
 
 | Token | Hex | Use |
 |---|---|---|
-| `--lime` | `#D6F23F` | Primary accent: CTAs, highlights, section labels, hover states (text only on black) |
-| `--yellow` | `#F2D23F` | Secondary accent: gradient partner for lime on the CTA band |
+| `--orange` / `--lime` | `#F2621E` | Primary accent: CTAs, highlights, section labels, hover states |
+| `--orange-2` / `--lime-2` | `#C94A12` | Deep orange accent for hover states & borders |
+| `--orange-soft` | `#FFF1E8` | Soft orange background tint for alerts & highlights |
+| `--yellow` | `#FF8A00` | Secondary accent: gradient partner for orange on CTA bands |
 | `--black` | `#0B0B0B` | Logo field, dark hero sections, headings |
-| `--ink` | `#151515` | Secondary dark sections, cards on black |
+| `--ink` | `#141414` | Secondary dark sections, cards on black |
 | `--white` | `#FFFFFF` | Primary background |
 | `--off-white` | `#F4F3EF` | Alternating light sections |
 | `--grey` | `#8C8C88` | Captions, meta |
 
-Rule: logo always sits on black or white, never on lime. Lime is the energy; black and white are the structure. Lime text is only ever used on black (contrast); on light backgrounds lime is a background chip with black text.
+Rule: logo always sits on black or white, never on orange. Orange is the energy; black and white are the structure. White text is used on orange backgrounds for maximum contrast and legibility.
 
 ### Typography
 
